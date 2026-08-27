@@ -1,0 +1,58 @@
+:root {
+  --md-primary-fg-color: #050505;
+  --md-primary-bg-color: #ffffff;
+  --md-accent-fg-color: #ffffff;
+  --md-default-bg-color: #090909;
+  --md-default-fg-color: #f4f4f4;
+  --md-code-bg-color: #111111;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-hue: 0;
+  --md-typeset-a-color: #ffffff;
+}
+
+.md-header,
+.md-tabs {
+  background: #050505;
+  box-shadow: none;
+  border-bottom: 1px solid #252525;
+}
+
+.md-main__inner {
+  max-width: 76rem;
+}
+
+.md-content__inner {
+  max-width: 52rem;
+}
+
+.md-typeset h1 {
+  font-weight: 650;
+  letter-spacing: -0.035em;
+}
+
+.md-typeset h2 {
+  border-top: 1px solid #282828;
+  margin-top: 2.4em;
+  padding-top: 0.9em;
+}
+
+.md-typeset code,
+.md-typeset pre {
+  border-radius: 0.35rem;
+}
+
+.md-typeset table:not([class]) {
+  border: 1px solid #292929;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-color: #686868;
+  border-radius: 0.35rem;
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+}

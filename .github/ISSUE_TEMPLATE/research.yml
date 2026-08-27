@@ -1,0 +1,36 @@
+name: New research result
+description: Propose a reproducible result without attaching proprietary material
+title: "[Research] "
+labels: [research]
+body:
+  - type: markdown
+    attributes:
+      value: Do not attach firmware, APKs, RPKs, keys, certificates, or personal dumps.
+  - type: input
+    id: model
+    attributes:
+      label: Model and firmware version
+      placeholder: M2116W1, 1.4.x
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective and procedure
+      description: List the commands and steps required to reproduce the result.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Shareable evidence
+      description: Offsets, hashes, sanitized output, or a synthetic fixture.
+    validations:
+      required: true
+  - type: dropdown
+    id: confidence
+    attributes:
+      label: Evidence level
+      options: [Observed, Reproduced, Inferred, Hypothesis]
+    validations:
+      required: true

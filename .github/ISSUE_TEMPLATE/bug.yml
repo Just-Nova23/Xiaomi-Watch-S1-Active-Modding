@@ -1,0 +1,24 @@
+name: Tool bug
+description: Report reproducible behavior in the public scripts
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: textarea
+    id: command
+    attributes:
+      label: Command and output
+      description: Remove personal paths and do not paste binary data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Operating system and Python version
+    validations:
+      required: true

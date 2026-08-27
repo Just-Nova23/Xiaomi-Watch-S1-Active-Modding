@@ -1,0 +1,31 @@
+name: Verify
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt -r requirements-docs.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python -m compileall -q tools tests
+      - run: mkdocs build --strict
+      - name: Reject proprietary or secret file types
+        shell: bash
+        run: |
+          blocked=$(git ls-files | grep -Ei '\.(bin|pkg|fw|ota|apk|apks|xapk|rpk|idsig|jks|keystore|p12|pfx|pem|key)$' || true)
+          if [ -n "$blocked" ]; then
+            echo "Blocked files are tracked:"
+            echo "$blocked"
+            exit 1
+          fi

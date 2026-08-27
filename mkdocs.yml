@@ -1,0 +1,70 @@
+site_name: S1 Active Modding — Just-Nova23
+site_description: Open research and tools for Xiaomi Watch S1 Active M2116W1
+site_author: Just-Nova23
+site_url: https://just-nova23.github.io/Xiaomi-Watch-S1-Active-Modding/
+repo_name: Just-Nova23/Xiaomi-Watch-S1-Active-Modding
+repo_url: https://github.com/Just-Nova23/Xiaomi-Watch-S1-Active-Modding
+edit_uri: edit/main/docs/
+copyright: Independent documentation by Just-Nova23 — code licensed under MIT
+
+theme:
+  name: material
+  language: en
+  palette:
+    scheme: slate
+    primary: black
+    accent: white
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+    - content.action.edit
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+
+nav:
+  - Start:
+      - Overview: index.md
+      - Getting started: getting-started.md
+      - Research status: status.md
+      - FAQ: faq.md
+  - How it works:
+      - Architecture: architecture.md
+      - Firmware packages: firmware-package-format.md
+      - Native apps: native-apps.md
+      - RPK apps: rpk-apps.md
+      - Native assistant: native-assistant.md
+      - Graphics and TSCFrameImage: graphics-tscframeimage.md
+  - Laboratory:
+      - Tool reference: tools-reference.md
+      - ARM reverse engineering: reverse-engineering-arm.md
+      - Patch development: patch-development.md
+      - Research method: research-methodology.md
+  - Safety:
+      - OTA safety: ota-safety.md
+      - Recovery: recovery.md
+      - Known errors: known-errors.md
+  - Community:
+      - Contributing research: contributing-research.md
+      - Roadmap: roadmap.md
+      - References: references.md
+      - Glossary: glossary.md
