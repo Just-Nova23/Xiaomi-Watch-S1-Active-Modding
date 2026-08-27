@@ -21,7 +21,9 @@
   const plusIcon = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z"></path></svg>';
 
   function readNumber(key, fallback, min, max) {
-    const value = Number(localStorage.getItem(key));
+    const stored = localStorage.getItem(key);
+    if (stored === null) return fallback;
+    const value = Number(stored);
     return Number.isFinite(value) ? Math.min(max, Math.max(min, value)) : fallback;
   }
 

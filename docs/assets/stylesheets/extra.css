@@ -1,9 +1,12 @@
-:root,
-[data-md-color-scheme="default"] {
-  color-scheme: light;
+:root {
   --reader-font-scale: 1;
   --reader-line-height: 1.65;
   --reader-content-width: 52rem;
+}
+
+:root,
+[data-md-color-scheme="default"] {
+  color-scheme: light;
   --md-primary-fg-color: #ececeb;
   --md-primary-bg-color: #25272a;
   --md-accent-fg-color: #4f5965;
@@ -97,6 +100,16 @@ body,
 
 .md-main__inner {
   max-width: 76rem;
+}
+
+.md-sidebar--primary,
+.md-sidebar--secondary {
+  transform: translateX(0) scale(1);
+  transform-origin: center;
+  transition:
+    opacity 220ms cubic-bezier(0.2, 0, 0, 1),
+    transform 220ms cubic-bezier(0.2, 0, 0, 1),
+    visibility 0s linear 0s;
 }
 
 .md-content__inner {
@@ -399,16 +412,29 @@ body,
 
 @media screen and (min-width: 76.25em) {
   .reader-nav-hidden .md-sidebar--primary {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-0.9rem) scale(0.985);
+    transition:
+      opacity 220ms cubic-bezier(0.2, 0, 0, 1),
+      transform 220ms cubic-bezier(0.2, 0, 0, 1),
+      visibility 0s linear 220ms;
   }
 
   .reader-toc-hidden .md-sidebar--secondary {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(0.9rem) scale(0.985);
+    transition:
+      opacity 220ms cubic-bezier(0.2, 0, 0, 1),
+      transform 220ms cubic-bezier(0.2, 0, 0, 1),
+      visibility 0s linear 220ms;
   }
 
-  .reader-nav-hidden .md-main__inner,
-  .reader-toc-hidden .md-main__inner {
-    justify-content: center;
+  .md-content {
+    min-width: 0;
   }
 }
 
