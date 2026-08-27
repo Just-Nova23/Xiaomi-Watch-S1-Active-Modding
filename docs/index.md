@@ -9,15 +9,26 @@ An open, reproducible guide maintained by [Just-Nova23](https://github.com/Just-
 
 | If you want to… | Read… |
 |---|---|
+| choose the correct route for your goal | [Learning path](learning-path.md) |
+| prepare Windows, WSL, or Linux from zero | [Windows and Linux setup](windows-setup.md) |
 | understand the project with no prior knowledge | [Getting started](getting-started.md) |
 | see what has actually been verified | [Research status](status.md) |
 | understand the firmware components | [Architecture](architecture.md) |
+| inspect only evidence-backed diagrams | [Verified concept maps](concept-maps.md) |
 | inspect a package without changing it | [Package formats](firmware-package-format.md) and [Tools](tools-reference.md) |
+| follow a complete package inspection | [Full-package walkthrough](full-package-walkthrough.md) |
+| compare two versions or mods | [Firmware comparison](firmware-comparison.md) |
+| analyze native code in Ghidra | [Ghidra and ARM workflow](ghidra-workflow.md) |
 | study built-in system apps | [Native apps](native-apps.md) |
 | study installable apps | [RPK apps](rpk-apps.md) |
+| build an installable app from zero | [RPK tutorial](rpk-tutorial.md) |
 | understand graphics and animations | [Graphics and TSCFrameImage](graphics-tscframeimage.md) |
+| reproduce GUI-container experiments | [Native GUI asset laboratory](gui-asset-lab.md) |
 | develop a guarded patch | [Patch development](patch-development.md) |
+| reproduce the verified text-capacity patch | [Assistant patch walkthrough](assistant-patch-walkthrough.md) |
 | inspect measured firmware data as charts | [Research data and charts](research-data.md) |
+| keep experiments reproducible | [Lab notebook](lab-notebook.md) |
+| find official specifications and tools | [Resource library](references.md) |
 | contribute new evidence | [Contributing research](contributing-research.md) |
 
 ## Principles

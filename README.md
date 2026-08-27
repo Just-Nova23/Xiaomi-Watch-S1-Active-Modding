@@ -21,12 +21,18 @@ This repository does **not** distribute Xiaomi firmware, m0tral packages, modifi
 ## Start here
 
 - [Complete documentation website](https://just-nova23.github.io/Xiaomi-Watch-S1-Active-Modding/)
+- [Learning path](docs/learning-path.md) and [complete Windows/Linux setup](docs/windows-setup.md)
 - [Safe research setup](docs/getting-started.md)
 - [Current research status](docs/status.md)
 - [Architecture overview](docs/architecture.md)
 - [Tool reference](docs/tools-reference.md)
+- [Evidence-backed architecture maps](docs/architecture.md) and [verified concept maps](docs/concept-maps.md)
+- [Step-by-step firmware inspection](docs/full-package-walkthrough.md) and [comparison](docs/firmware-comparison.md)
+- [Ghidra workflow](docs/ghidra-workflow.md)
 - [Native apps](docs/native-apps.md) and [RPK apps](docs/rpk-apps.md)
+- [Build an RPK from zero](docs/rpk-tutorial.md)
 - [Graphics and TSCFrameImage](docs/graphics-tscframeimage.md)
+- [Native GUI asset laboratory](docs/gui-asset-lab.md)
 - [OTA safety](docs/ota-safety.md) and [recovery](docs/recovery.md)
 - [How to contribute](CONTRIBUTING.md)
 

@@ -52,27 +52,42 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
   - Start:
       - Overview: index.md
+      - Learning path: learning-path.md
+      - Windows and Linux setup: windows-setup.md
       - Getting started: getting-started.md
       - Research status: status.md
       - FAQ: faq.md
   - How it works:
       - Architecture: architecture.md
+      - Verified concept maps: concept-maps.md
       - Firmware packages: firmware-package-format.md
       - Native apps: native-apps.md
       - RPK apps: rpk-apps.md
       - Native assistant: native-assistant.md
       - Graphics and TSCFrameImage: graphics-tscframeimage.md
+  - Step-by-step tutorials:
+      - Inspect a full package: full-package-walkthrough.md
+      - Compare firmware versions: firmware-comparison.md
+      - Ghidra and ARM Thumb: ghidra-workflow.md
+      - Assistant capacity patch: assistant-patch-walkthrough.md
+      - Native GUI asset lab: gui-asset-lab.md
+      - Build an RPK from zero: rpk-tutorial.md
   - Laboratory:
       - Research data and charts: research-data.md
       - Tool reference: tools-reference.md
       - ARM reverse engineering: reverse-engineering-arm.md
       - Patch development: patch-development.md
       - Research method: research-methodology.md
+      - Lab notebook: lab-notebook.md
   - Safety:
       - OTA safety: ota-safety.md
       - Recovery: recovery.md
@@ -80,5 +95,5 @@ nav:
   - Community:
       - Contributing research: contributing-research.md
       - Roadmap: roadmap.md
-      - References: references.md
+      - Resource library: references.md
       - Glossary: glossary.md

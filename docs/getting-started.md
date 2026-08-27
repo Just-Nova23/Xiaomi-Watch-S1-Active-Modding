@@ -2,6 +2,8 @@
 
 This guide prepares an offline workspace. It does not flash a watch.
 
+This page is the short quick start. For full installation troubleshooting, PowerShell and WSL commands, follow [Windows and Linux setup](windows-setup.md). If you are unsure whether you need RPK development or firmware analysis, begin with the [Learning path](learning-path.md).
+
 ## Requirements
 
 - Python 3.11 or newer;
@@ -63,3 +65,11 @@ sha256sum ../private-firmware/stock.pkg
 
 For every patch, record the component index, exact file offset, original bytes,
 replacement bytes, reason, expected behavior, and validation state.
+
+## Continue with a complete tutorial
+
+- [Inspect a full package](full-package-walkthrough.md)
+- [Compare firmware versions](firmware-comparison.md)
+- [Analyze the main image with Ghidra](ghidra-workflow.md)
+- [Study native GUI assets](gui-asset-lab.md)
+- [Build an RPK app from zero](rpk-tutorial.md)

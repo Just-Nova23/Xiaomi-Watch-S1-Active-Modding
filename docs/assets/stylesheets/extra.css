@@ -164,6 +164,15 @@
   background: var(--s1-chart-highlight);
 }
 
+.mermaid {
+  overflow-x: auto;
+  margin: 1.4rem 0 1.8rem;
+  padding: 1rem;
+  border: 1px solid var(--s1-divider);
+  border-radius: 0.45rem;
+  text-align: center;
+}
+
 @media screen and (max-width: 44rem) {
   .data-chart__row {
     grid-template-columns: minmax(7rem, 1fr) minmax(5rem, 1.5fr);
