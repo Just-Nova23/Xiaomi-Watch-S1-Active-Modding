@@ -1,6 +1,9 @@
 :root,
 [data-md-color-scheme="default"] {
   color-scheme: light;
+  --reader-font-scale: 1;
+  --reader-line-height: 1.65;
+  --reader-content-width: 52rem;
   --md-primary-fg-color: #ececeb;
   --md-primary-bg-color: #25272a;
   --md-accent-fg-color: #4f5965;
@@ -46,6 +49,32 @@
   --s1-chart-highlight: #bec4cb;
 }
 
+body,
+.md-header,
+.md-tabs,
+.md-main,
+.md-sidebar,
+.md-content,
+.md-typeset,
+.md-footer,
+.md-search__form,
+.md-search__output,
+.md-nav,
+.md-top,
+.mermaid,
+.data-chart,
+.md-typeset code,
+.md-typeset pre,
+.md-typeset table:not([class]),
+.md-typeset .admonition,
+.md-typeset details {
+  transition:
+    background-color 260ms cubic-bezier(0.2, 0, 0, 1),
+    border-color 260ms cubic-bezier(0.2, 0, 0, 1),
+    color 260ms cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 260ms cubic-bezier(0.2, 0, 0, 1);
+}
+
 .md-header,
 .md-tabs {
   background: var(--s1-header-bg);
@@ -71,7 +100,13 @@
 }
 
 .md-content__inner {
-  max-width: 52rem;
+  max-width: var(--reader-content-width);
+  transition: max-width 180ms ease;
+}
+
+.md-typeset {
+  font-size: calc(0.8rem * var(--reader-font-scale));
+  line-height: var(--reader-line-height);
 }
 
 .md-typeset h1 {
@@ -165,6 +200,7 @@
 }
 
 .mermaid {
+  position: relative;
   overflow-x: auto;
   margin: 1.4rem 0 1.8rem;
   padding: 1rem;
@@ -173,7 +209,222 @@
   text-align: center;
 }
 
+.md-content .mermaid[data-viewer-ready="true"] {
+  cursor: zoom-in;
+}
+
+.md-content .mermaid[data-viewer-ready="true"]:is(:hover, :focus-visible) {
+  border-color: var(--md-default-fg-color--light);
+  box-shadow: 0 0 0 0.12rem color-mix(in srgb, var(--md-default-fg-color) 18%, transparent);
+  outline: none;
+}
+
+.reader-controls {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin-left: 0.2rem;
+}
+
+.reader-control,
+.reader-settings__close,
+.diagram-viewer__toolbar button {
+  display: inline-grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0.3rem;
+  background: transparent;
+  color: var(--md-default-fg-color);
+  cursor: pointer;
+  font: inherit;
+}
+
+.reader-control svg,
+.reader-settings__close svg,
+.diagram-viewer__toolbar svg {
+  width: 1.15rem;
+  height: 1.15rem;
+  fill: currentcolor;
+}
+
+.reader-control--settings span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.reader-control:is(:hover, :focus-visible),
+.reader-settings__close:is(:hover, :focus-visible),
+.diagram-viewer__toolbar button:is(:hover, :focus-visible) {
+  background: var(--s1-control-hover-bg);
+  outline: 2px solid transparent;
+}
+
+.reader-control[aria-pressed="true"] {
+  background: var(--s1-control-bg);
+}
+
+.reader-settings {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + 0.55rem);
+  right: 0;
+  width: min(19rem, calc(100vw - 1.5rem));
+  padding: 0.9rem;
+  border: 1px solid var(--s1-divider);
+  border-radius: 0.45rem;
+  background: var(--md-default-bg-color);
+  box-shadow: 0 0.7rem 2rem rgb(0 0 0 / 18%);
+  color: var(--md-default-fg-color);
+}
+
+.reader-settings[hidden] {
+  display: none;
+}
+
+.reader-settings__header,
+.reader-setting > span,
+.reader-setting--toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.reader-settings__header {
+  min-height: 2.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.reader-setting {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.55rem 0;
+  font-size: 0.72rem;
+}
+
+.reader-setting output {
+  color: var(--md-default-fg-color--light);
+  font-variant-numeric: tabular-nums;
+}
+
+.reader-setting input[type="range"] {
+  width: 100%;
+  accent-color: var(--md-default-fg-color);
+}
+
+.reader-setting--toggle input {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--md-default-fg-color);
+}
+
+.reader-settings__reset {
+  width: 100%;
+  margin-top: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--s1-soft-border);
+  border-radius: 0.3rem;
+  background: var(--s1-control-bg);
+  color: var(--s1-control-fg);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.7rem;
+}
+
+.reader-settings__reset:is(:hover, :focus-visible) {
+  background: var(--s1-control-hover-bg);
+}
+
+.diagram-viewer-open {
+  overflow: hidden;
+}
+
+.diagram-viewer {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: color-mix(in srgb, var(--md-default-bg-color) 96%, transparent);
+  backdrop-filter: blur(0.35rem);
+  color: var(--md-default-fg-color);
+}
+
+.diagram-viewer__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  min-height: 3.2rem;
+  padding: 0.45rem 0.8rem;
+  border-bottom: 1px solid var(--s1-divider);
+  background: var(--s1-header-bg);
+}
+
+.diagram-viewer__toolbar button[data-action="reset"] {
+  width: auto;
+  padding: 0 0.7rem;
+  font-size: 0.68rem;
+}
+
+.diagram-viewer__zoom {
+  min-width: 3.3rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.diagram-viewer__canvas {
+  overflow: auto;
+  padding: 1.25rem;
+  overscroll-behavior: contain;
+}
+
+.diagram-viewer .diagram-viewer__diagram {
+  box-sizing: border-box;
+  min-width: 100%;
+  min-height: calc(100% - 0.1rem);
+  margin: 0;
+  border: 0;
+  cursor: default;
+  background: var(--md-default-bg-color);
+  transition: width 140ms ease;
+}
+
+@media screen and (min-width: 76.25em) {
+  .reader-nav-hidden .md-sidebar--primary {
+    display: none;
+  }
+
+  .reader-toc-hidden .md-sidebar--secondary {
+    display: none;
+  }
+
+  .reader-nav-hidden .md-main__inner,
+  .reader-toc-hidden .md-main__inner {
+    justify-content: center;
+  }
+}
+
 @media screen and (max-width: 44rem) {
+  .reader-control--nav {
+    display: none;
+  }
+
+  .reader-controls {
+    margin-left: 0;
+  }
+
+  .diagram-viewer__canvas {
+    padding: 0.6rem;
+  }
+
   .data-chart__row {
     grid-template-columns: minmax(7rem, 1fr) minmax(5rem, 1.5fr);
     gap: 0.4rem 0.7rem;

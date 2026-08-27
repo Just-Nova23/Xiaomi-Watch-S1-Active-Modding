@@ -41,6 +41,9 @@ theme:
 extra_css:
   - assets/stylesheets/extra.css
 
+extra_javascript:
+  - assets/javascripts/site-controls.js
+
 markdown_extensions:
   - admonition
   - attr_list
@@ -52,6 +55,11 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path:
+        - docs
+      check_paths: true
+      url_download: false
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -61,6 +69,7 @@ markdown_extensions:
 nav:
   - Start:
       - Overview: index.md
+      - Continuous guide: continuous-guide.md
       - Learning path: learning-path.md
       - Windows and Linux setup: windows-setup.md
       - Getting started: getting-started.md
