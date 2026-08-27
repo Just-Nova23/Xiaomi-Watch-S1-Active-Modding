@@ -1,5 +1,7 @@
 # Native graphics and TSCFrameImage
 
+The [native GUI record chart](research-data.md#selected-native-gui-records) compares exact sizes and packet counts for three verified assistant assets.
+
 ## What is known
 
 Component 6 is a concatenation of native GUI asset records. Each observed record

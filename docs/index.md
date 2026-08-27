@@ -17,6 +17,7 @@ An open, reproducible guide maintained by [Just-Nova23](https://github.com/Just-
 | study installable apps | [RPK apps](rpk-apps.md) |
 | understand graphics and animations | [Graphics and TSCFrameImage](graphics-tscframeimage.md) |
 | develop a guarded patch | [Patch development](patch-development.md) |
+| inspect measured firmware data as charts | [Research data and charts](research-data.md) |
 | contribute new evidence | [Contributing research](contributing-research.md) |
 
 ## Principles

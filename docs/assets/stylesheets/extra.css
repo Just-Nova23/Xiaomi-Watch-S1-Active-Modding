@@ -1,22 +1,69 @@
-:root {
-  --md-primary-fg-color: #050505;
-  --md-primary-bg-color: #ffffff;
-  --md-accent-fg-color: #ffffff;
-  --md-default-bg-color: #090909;
-  --md-default-fg-color: #f4f4f4;
-  --md-code-bg-color: #111111;
+:root,
+[data-md-color-scheme="default"] {
+  color-scheme: light;
+  --md-primary-fg-color: #ececeb;
+  --md-primary-bg-color: #25272a;
+  --md-accent-fg-color: #4f5965;
+  --md-default-bg-color: #f8f8f7;
+  --md-default-fg-color: #25272a;
+  --md-default-fg-color--light: #62666b;
+  --md-default-fg-color--lighter: #8b8e92;
+  --md-code-bg-color: #eeeeec;
+  --md-code-fg-color: #242629;
+  --md-typeset-a-color: #46515d;
+  --s1-header-bg: #f1f1ef;
+  --s1-divider: #d8d8d5;
+  --s1-soft-border: #c9c9c5;
+  --s1-control-bg: #dededb;
+  --s1-control-hover-bg: #d2d3d0;
+  --s1-control-fg: #303337;
+  --s1-chart-track: #e4e4e1;
+  --s1-chart-bar: #747b83;
+  --s1-chart-highlight: #3f474f;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-hue: 0;
-  --md-typeset-a-color: #ffffff;
+  color-scheme: dark;
+  --md-hue: 220;
+  --md-primary-fg-color: #242629;
+  --md-primary-bg-color: #e3e4e6;
+  --md-accent-fg-color: #aeb8c2;
+  --md-default-bg-color: #181a1d;
+  --md-default-fg-color: #e2e3e5;
+  --md-default-fg-color--light: #a5a8ad;
+  --md-default-fg-color--lighter: #777b81;
+  --md-code-bg-color: #222428;
+  --md-code-fg-color: #e6e7e9;
+  --md-typeset-a-color: #bdc5ce;
+  --s1-header-bg: #202226;
+  --s1-divider: #34373c;
+  --s1-soft-border: #4a4d53;
+  --s1-control-bg: #303339;
+  --s1-control-hover-bg: #3b3f46;
+  --s1-control-fg: #e0e2e5;
+  --s1-chart-track: #292c31;
+  --s1-chart-bar: #858c95;
+  --s1-chart-highlight: #bec4cb;
 }
 
 .md-header,
 .md-tabs {
-  background: #050505;
+  background: var(--s1-header-bg);
+  color: var(--md-default-fg-color);
   box-shadow: none;
-  border-bottom: 1px solid #252525;
+  border-bottom: 1px solid var(--s1-divider);
+}
+
+.md-header__button,
+.md-header__title,
+.md-tabs__link {
+  color: var(--md-default-fg-color);
+}
+
+.md-tabs__link--active,
+.md-tabs__link:is(:focus, :hover) {
+  color: var(--md-default-fg-color);
+  opacity: 1;
 }
 
 .md-main__inner {
@@ -33,7 +80,7 @@
 }
 
 .md-typeset h2 {
-  border-top: 1px solid #282828;
+  border-top: 1px solid var(--s1-divider);
   margin-top: 2.4em;
   padding-top: 0.9em;
 }
@@ -44,15 +91,95 @@
 }
 
 .md-typeset table:not([class]) {
-  border: 1px solid #292929;
+  border: 1px solid var(--s1-divider);
 }
 
 .md-typeset .admonition,
 .md-typeset details {
-  border-color: #686868;
+  border-color: var(--s1-soft-border);
   border-radius: 0.35rem;
 }
 
 .md-typeset a:hover {
   text-decoration: underline;
+}
+
+.md-top {
+  background: var(--s1-control-bg);
+  border: 1px solid var(--s1-soft-border);
+  box-shadow: 0 0.2rem 0.6rem rgb(0 0 0 / 12%);
+  color: var(--s1-control-fg);
+}
+
+.md-top:is(:focus, :hover) {
+  background: var(--s1-control-hover-bg);
+  color: var(--s1-control-fg);
+}
+
+.data-chart {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1.4rem 0 1.8rem;
+  padding: 1.1rem;
+  border: 1px solid var(--s1-divider);
+  border-radius: 0.45rem;
+  background: color-mix(in srgb, var(--md-default-bg-color) 94%, var(--md-default-fg-color));
+}
+
+.data-chart__row {
+  display: grid;
+  grid-template-columns: minmax(8.5rem, 1.15fr) minmax(10rem, 3fr) minmax(5.2rem, auto);
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.data-chart__label,
+.data-chart__value {
+  font-size: 0.72rem;
+  line-height: 1.25;
+}
+
+.data-chart__value {
+  color: var(--md-default-fg-color--light);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.data-chart__track {
+  height: 0.7rem;
+  overflow: hidden;
+  border-radius: 0.2rem;
+  background: var(--s1-chart-track);
+}
+
+.data-chart__bar {
+  display: block;
+  width: max(2px, var(--bar-size));
+  height: 100%;
+  border-radius: inherit;
+  background: var(--s1-chart-bar);
+}
+
+.data-chart__row--highlight .data-chart__bar {
+  background: var(--s1-chart-highlight);
+}
+
+@media screen and (max-width: 44rem) {
+  .data-chart__row {
+    grid-template-columns: minmax(7rem, 1fr) minmax(5rem, 1.5fr);
+    gap: 0.4rem 0.7rem;
+  }
+
+  .data-chart__value {
+    grid-column: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

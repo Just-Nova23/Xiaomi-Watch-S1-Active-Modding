@@ -10,10 +10,23 @@ copyright: Independent documentation by Just-Nova23 — code licensed under MIT
 theme:
   name: material
   language: en
+  icon:
+    repo: fontawesome/brands/github
   palette:
-    scheme: slate
-    primary: black
-    accent: white
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: grey
+      accent: grey
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: grey
+      accent: grey
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
   features:
     - navigation.instant
     - navigation.sections
@@ -55,6 +68,7 @@ nav:
       - Native assistant: native-assistant.md
       - Graphics and TSCFrameImage: graphics-tscframeimage.md
   - Laboratory:
+      - Research data and charts: research-data.md
       - Tool reference: tools-reference.md
       - ARM reverse engineering: reverse-engineering-arm.md
       - Patch development: patch-development.md

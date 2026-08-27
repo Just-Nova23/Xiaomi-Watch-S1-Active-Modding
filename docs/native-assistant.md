@@ -1,5 +1,7 @@
 # Native assistant research
 
+The [text-capacity chart](research-data.md#native-assistant-text-capacity) shows the measured stock and patched limits against the existing buffer.
+
 The stock assistant path transports phone-produced instructions to a native
 watch UI. The phone-side serializer, BES-side decoder, and Bluetooth framing all
 preserve strings longer than 300 characters. The observed truncation occurs in

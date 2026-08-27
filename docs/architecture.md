@@ -1,5 +1,7 @@
 # Architecture overview
 
+For a measured comparison of every package component, see [Research data and charts](research-data.md#full-package-component-sizes).
+
 The S1 Active is not an Android or Wear OS watch. The analyzed firmware combines
 an STM32-side main system and a BES-side Bluetooth/audio system, with resources
 stored in separate OTA components.
