@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """Extract and rebuild Xiaomi GUI image-stream payloads.
 
-The outer record and packet stream are understood. Packet boundaries are not
-yet proven to be frame boundaries: Xiaomi uses the same container for animated
-and non-animated GUI resources. The TSCFrameImage payload remains opaque, so
-this tool deliberately preserves every packet byte-for-byte.
+The outer record and variable-length packet stream are understood. Packet
+boundaries are not yet proven to be frame boundaries: Xiaomi uses this family
+for animated and non-animated GUI resources. This is distinct from the decoded
+fixed-frame TSCFrameImage/TSC6A format handled by ``tsc_frame_image.py``. This
+tool deliberately preserves every variable packet byte-for-byte.
 """
 
 from __future__ import annotations

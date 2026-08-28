@@ -41,12 +41,17 @@ In Xiaomi `1.4.174`:
    `0x1a5730`;
 2. that function opens names such as `guiimage_en_p1.bin`, reads eight bytes,
    and passes the two halfwords and one word to the image widget;
-3. the widget setup routine is at file offset `0x1f2a9e` in this load region;
-4. its frame-offset routine multiplies width and height, then computes
+3. the TouchGFX transition template identifies the owning screen types as
+   `RetailScreenView` and `RetailScreenPresenter`; the eleven `p1` through
+   `p11` files are therefore pages used by the native retail/demo screen;
+4. each page provides data to a `DrawableListItems<TSCFrameImage, 3>`, so the
+   screen owns three `TSCFrameImage` drawables at a time;
+5. the widget setup routine is at file offset `0x1f2a9e` in this load region;
+6. its frame-offset routine multiplies width and height, then computes
    `(width * height * 3) >> 2`, exactly six bits per pixel;
-5. its draw path passes `0x17` to the Nema GPU API; ST's public Nema headers
+7. its draw path passes `0x17` to the Nema GPU API; ST's public Nema headers
    define `0x17` as `NEMA_TSC6A`;
-6. frame `n` is read at `8 + n * frame_size`.
+8. frame `n` is read at `8 + n * frame_size`.
 
 The code and related string/data region use the verified local relation
 `runtime = file_offset + 0x08060000`. This does **not** establish one universal
