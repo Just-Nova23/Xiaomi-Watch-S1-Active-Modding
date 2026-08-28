@@ -1,6 +1,9 @@
 # Native GUI asset laboratory
 
-This laboratory studies component 6 without claiming a complete `TSCFrameImage` decoder. The safe objective is to prove the outer record format, catalog assets, and design experiments that can reveal inner fields.
+This laboratory studies the variable-length packet records in component 6.
+They are distinct from the now-decoded fixed-frame `TSCFrameImage` files. The
+safe objective here is to prove the outer record format, catalog packet assets,
+and design experiments that reveal their still-unknown inner opcodes.
 
 ## Evidence boundary
 
@@ -10,14 +13,16 @@ Currently verified:
 - each record has a path, CRC-protected body, and length-prefixed packet stream;
 - the parser can split and byte-perfectly rebuild an unchanged record;
 - native assistant paths identify listen, think, and transition assets;
-- raw GPU texture output is not a drop-in replacement for the complete record.
+- raw GPU texture output is not a drop-in replacement for these packet records;
+- separately, `TSCFrameImage` uses an eight-byte header and raw fixed-size
+  TSC6A frames, as documented in [Native graphics](graphics-tscframeimage.md).
 
 Not yet verified:
 
 - one packet equals one displayed frame;
 - width, height, pixel format, or frame timing fields for every packet type;
 - delta-frame opcode meanings;
-- a general decoder or encoder;
+- a general decoder or encoder for the variable-length packet family;
 - safe replacement of boot-critical artwork.
 
 ## Step 1: catalog the package
@@ -160,12 +165,14 @@ Keep layers separate:
 flowchart LR
   RECORD[Component-6 record] --> OUTER[Observed Xiaomi outer framing]
   OUTER --> PACKET[Length-prefixed packet]
-  PACKET -. unknown fields .-> FRAME[TSCFrameImage framing or delta layer]
-  FRAME -. possible payload .-> TEXTURE[GPU/bitmap texture]
+  PACKET -. unknown fields .-> FRAME[Variable full/delta command layer]
+  FRAME -. possible output .-> TEXTURE[GPU/bitmap texture]
   TEXTURE -. decoded result .-> PIXELS[Visible pixels]
 ```
 
-An encoder is complete only when it can reverse every required layer accepted by the watch loader.
+An encoder for this packet family is complete only when it can reverse every
+required layer accepted by that loader. The separate `TSCFrameImage` tool does
+not satisfy this packet-codec requirement.
 
 ## Step 8: decoder before encoder
 

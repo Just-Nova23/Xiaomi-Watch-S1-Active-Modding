@@ -93,7 +93,9 @@ Follow [Ghidra and ARM workflow](ghidra-workflow.md) step by step.
 
 ## Path E: native graphics
 
-The outer component-6 record format is understood; the inner `TSCFrameImage` payload is not yet fully decoded.
+The fixed-frame `TSCFrameImage` format is decoded and can be authored with the
+repository tools. The variable-length packet codec used by logo and assistant
+animations remains a separate research target.
 
 1. Catalog records without extracting copyrighted data into Git.
 2. Select a non-critical record by path.

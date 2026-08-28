@@ -64,6 +64,32 @@ cmp record.bin generated/rebuilt.bin
 
 A byte-identical comparison proves only that the outer container was preserved.
 
+## `tsc_frame_image.py`
+
+Builds and validates native `TSCFrameImage` files. It implements Xiaomi's
+eight-byte header and uses raw fixed-size NEMA TSC6A frames. PNG encoding can
+invoke a separately obtained Nema PixPresso executable.
+
+```bash
+python tools/tsc_frame_image.py encode generated/image.tscframe \
+  frame-000.png frame-001.png \
+  --pixpresso /path/to/nema_pixpresso
+python tools/tsc_frame_image.py inspect generated/image.tscframe
+python tools/tsc_frame_image.py extract generated/image.tscframe generated/frames
+```
+
+## `gui_asset_record.py`
+
+Wraps an arbitrary NAND-file body in a generic component-6 asset record and can
+append a new, non-duplicate path to a private extracted component.
+
+```bash
+python tools/gui_asset_record.py build \
+  nand/asset/guiimage_en_p1.bin generated/image.tscframe generated/image.record
+python tools/gui_asset_record.py append \
+  private/component-06.bin generated/image.record generated/component-06-new.bin
+```
+
 ## `bitmap_catalog.py`
 
 Searches for known bitmap signatures and structures, then prepares an inventory for comparative analysis.
@@ -82,7 +108,9 @@ python tools/thumb_xrefs.py main.bin --offset 0x13024c
 python tools/thumb_xrefs.py main.bin --disasm-offset 0x130240 --bytes 0x80
 ```
 
-For the documented build, the defaults are `--image-offset 0` and `--base 0x08000000`. Do not reuse them on another build without verification.
+The default is retained for earlier documented assistant work. The
+`TSCFrameImage` code/data region instead proves a `0x08060000` local delta.
+Treat the SFU as load regions rather than imposing one base on the entire file.
 
 ## `patch_native_assistant_text_capacity.py`
 

@@ -31,16 +31,21 @@ Example: `M2116W1_1.4.174_main_analysis`.
 2. Select the extracted component.
 3. When Ghidra reports raw binary, choose an ARM little-endian language compatible with Thumb analysis.
 4. Do not guess a compiler specification as a fact; record the selection as an analysis setting.
-5. Open **Options** or the memory map and establish the documented image base `0x08000000`.
+5. Do not assign one base to the whole file. Create blocks only after deriving
+   each load region from literal pointers, vectors plus target bytes, or other
+   independently checked metadata.
 
-The crucial mapping is:
+The earlier assistant-handler mapping is:
 
 ```text
 file 0x00000000 → runtime 0x08000000
 file 0x0013024c → runtime 0x0813024c
 ```
 
-Do not strip `0x2000` from file offsets when using this mapping.
+Do not strip `0x2000` from file offsets when using that specific mapping. The
+`TSCFrameImage` code/data region has a different verified local delta,
+`0x08060000`. Applying either delta globally produces convincing but wrong
+cross-references.
 
 ## Treat the SFU1 header as data
 

@@ -1,6 +1,6 @@
 # Project status
 
-Last reviewed: 27 August 2026.
+Last reviewed: 28 August 2026.
 
 ## Compatibility baseline
 
@@ -12,7 +12,7 @@ Last reviewed: 27 August 2026.
 | Stock OTA identifier | `midr.watch.k63a` | Verified offline |
 | Compatible modified OTA identifier | `midr.mwtch.k63a` | Verified on device |
 | Main component size | 3,600,374 bytes | Verified offline |
-| Main runtime mapping | `0x08000000 + file_offset` | Verified from embedded pointers |
+| Main runtime mapping | Region-dependent | TSC code/data region proves local delta `0x08060000`; do not impose one global base |
 | Native bitmap records | 4,398 | Verified offline |
 
 Identifiers must not be treated as interchangeable. Xiaomi's OTA path validates
@@ -29,8 +29,9 @@ the identifier and version bytes before component transfer.
 | Catalog component 6 GUI records | Working | Records cover the component exactly |
 | Rebuild GUI outer record | Working | Byte-perfect with unchanged packets |
 | Decode TSC6/TSC6A | Working with Ambiq PixPresso | Third-party SDK is not redistributed |
-| Decode Xiaomi `TSCFrameImage` | In progress | Packet envelope known; frame payload unknown |
-| Create arbitrary native artwork | Blocked | Requires `TSCFrameImage` encoder or loader bypass |
+| Decode Xiaomi `TSCFrameImage` | Implemented offline | 8-byte header plus fixed-size raw NEMA TSC6A frames |
+| Create TSCFrameImage artwork | Implemented offline | PNG encode, parse, extract, and decode round trip verified |
+| Decode variable packet animations | In progress | Logo/assistant packet opcodes remain separate and unknown |
 | Catalog TouchGFX bitmap metadata | Working | 4,398 entries at the known table |
 | Native answer limit 299 → 399 | Verified on device | Uses existing 800-byte UTF-16 buffer |
 | Native answer beyond 399 | Research required | Requires memory-layout changes |

@@ -10,7 +10,11 @@ No. The firmware contains compiled code and resources, not the original source p
 
 ## Can I replace logos and animations?
 
-The GUI asset container is partly understood, but there is no complete verified `TSCFrameImage` encoder yet. Replacing bytes without correct encoding can break the UI or boot process.
+The `TSCFrameImage` header and TSC6A frame layout are decoded, and the
+repository contains a validated encoder workflow. The boot logo and assistant
+animations use a separate variable-length packet codec that is not yet
+generally encoded. Replacing bytes in those assets without the correct codec
+can still break UI resources or the update.
 
 ## Why is there no ready-made firmware download?
 

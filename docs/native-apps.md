@@ -26,7 +26,10 @@ In this project, it means a feature compiled and distributed with the firmware. 
 
 ## Current limits
 
-There is no general system for rebuilding every native app, and no complete verified encoder for `TSCFrameImage`. Specific cases can be documented and patched, but a universal visual editor cannot yet be promised.
+There is no general system for rebuilding every native app. `TSCFrameImage`
+files can now be authored, but static bitmap databases and variable-packet
+logo/assistant animations use other formats. Specific cases can be documented
+and patched; a universal visual editor cannot yet be promised.
 
 ## Native and RPK compared
 

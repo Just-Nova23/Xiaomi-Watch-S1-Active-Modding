@@ -45,6 +45,7 @@ An open, reproducible guide maintained by [Just-Nova23](https://github.com/Just-
 - mapped the nine components in the observed package;
 - verified `runtime address = 0x08000000 + file offset` for the main component;
 - located the native assistant response limit and built a guarded patch from 299 to 399 visible characters;
-- decoded the outer GUI asset container, while the inner `TSCFrameImage` codec remains an active research target.
+- decoded and implemented the fixed-frame `TSCFrameImage`/TSC6A workflow,
+  while the separate variable-packet logo and assistant codec remains active research.
 
 Always check the [compatibility matrix](status.md) before using a tool.

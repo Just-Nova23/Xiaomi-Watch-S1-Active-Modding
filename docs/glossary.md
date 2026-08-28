@@ -8,7 +8,9 @@
 cryptographic signature.
 
 **Delta frame** — An animation frame represented by changes from an earlier
-frame rather than a complete image. Its exact use in `TSCFrameImage` is inferred.
+frame rather than a complete image. Delta behavior is suspected in the
+variable-packet native animations, not in the decoded fixed-frame
+`TSCFrameImage` format.
 
 **RPK** — Installable Xiaomi Watch JavaScript application package.
 
@@ -20,5 +22,5 @@ present in the main image.
 **TSC4/TSC6/TSC6A** — Proprietary compressed GPU texture formats supported by
 Nema graphics hardware. TSC6A includes alpha.
 
-**TSCFrameImage** — Name found in the watch firmware for Xiaomi's still-partially
-understood native frame/animation representation.
+**TSCFrameImage** — Native file/widget format consisting of a little-endian
+width, height, and frame count followed by fixed-size raw NEMA TSC6A frames.

@@ -7,7 +7,7 @@ The project currently covers:
 - Xiaomi `full` and `diff` OTA container inspection;
 - component extraction, CRC validation, and conservative rebuilding;
 - the native TouchGFX bitmap database and GUI asset archive;
-- the partially understood `TSCFrameImage` animation format;
+- the decoded `TSCFrameImage` container and reproducible TSC6A encoder workflow;
 - native assistant message handling and its verified text-buffer limit;
 - third-party RPK application structure and development notes;
 - a safety-first workflow that never requires committing vendor firmware.

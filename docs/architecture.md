@@ -72,9 +72,10 @@ flowchart LR
 
 This is the actual decision sequence implemented by `tools/firmware_pkg.py`. The extractor writes new files only when requested; it never modifies the input package.
 
-## Main-image address map
+## Main-image load-region maps
 
-For the documented `M2116W1` main component, embedded pointers consistently satisfy:
+The SFU component cannot safely be modeled with one universal base. Earlier
+assistant work found a region where pointers satisfy:
 
 ```text
 runtime_address = 0x08000000 + file_offset
@@ -101,7 +102,19 @@ Examples checked in the analyzed build:
 | `0x00130358` | `0x08130358` | address inside the same handler neighborhood |
 | `0x002eda06` | `0x082eda06` | independent mapping check in a later region |
 
-An earlier `0x08280000` base assumption was wrong because it treated the `0x2000`-byte `SFU1` header as if it were outside the mapped image. Broad pointer comparison corrected the model. The repository defaults now use image offset `0` and base `0x08000000`.
+That relation remains valid for those verified offsets, but it is not global.
+The independently traced `TSCFrameImage` region proves:
+
+```text
+file 0x001a56f4 → runtime 0x082056f4
+file 0x00332c18 → runtime 0x08392c18
+local delta                  0x08060000
+```
+
+The string pointer `0x08392c18` is stored literally at file offset
+`0x001a570c`, and the nearby Thumb `ldr` at file offset `0x001a56f4` loads it.
+This is stronger evidence than deriving a base from the reset vector alone.
+Model verified load regions separately and record the pointer evidence for each.
 
 ## Native graphics containment map
 
@@ -117,15 +130,19 @@ flowchart TB
   RN --> STREAM[Length-prefixed packet stream]
   STREAM --> P0[Packet length · 2 B<br/>packet bytes]
   STREAM --> PX[Repeated until body end]
-  P0 -. inner interpretation unknown .-> TSC[TSCFrameImage layer]
+  P0 -. inner interpretation unknown .-> CMD[Variable full/delta command layer]
 
   classDef observed stroke-width:2px;
   classDef unknown stroke-width:2px,stroke-dasharray:2 3;
   class C6,R1,RN,RL,RV,PATH,PV,PL,STREAM,P0,PX observed;
-  class TSC unknown;
+  class CMD unknown;
 ```
 
 The parser can split and rebuild this **outer structure** byte-for-byte. It cannot yet render the inner packet payload. Packet boundaries are observed, but calling each packet an animation frame would be an unsupported claim.
+
+`TSCFrameImage` is a separate native file family: an eight-byte
+width/height/frame-count header followed by fixed-size raw NEMA TSC6A frames.
+See [Native graphics and TSCFrameImage](graphics-tscframeimage.md).
 
 ## Native and RPK software boundaries
 
