@@ -1,6 +1,6 @@
 # Project status
 
-Last reviewed: 28 August 2026.
+Last reviewed: 30 August 2026.
 
 ## Compatibility baseline
 
@@ -31,11 +31,15 @@ the identifier and version bytes before component transfer.
 | Decode TSC6/TSC6A | Working with Ambiq PixPresso | Third-party SDK is not redistributed |
 | Decode Xiaomi `TSCFrameImage` | Implemented offline | 8-byte header plus fixed-size raw NEMA TSC6A frames |
 | Create TSCFrameImage artwork | Implemented offline | PNG encode, parse, extract, and decode round trip verified |
+| Package a TSCFrameImage record | Implemented offline | Generic NAND record builder validates path, length, and body CRC |
+| Transfer rebuilt component 6 | Accepted on device | OTA completion/reboot observed; visual ownership must still be tested separately |
+| Display edited retail TSCFrameImage | Not yet visually verified | Requires opening and recording the native retail/demo page that owns `p1`–`p11` |
 | Decode variable packet animations | In progress | Logo/assistant packet opcodes remain separate and unknown |
 | Catalog TouchGFX bitmap metadata | Working | 4,398 entries at the known table |
 | Native answer limit 299 → 399 | Verified on device | Uses existing 800-byte UTF-16 buffer |
 | Native answer beyond 399 | Research required | Requires memory-layout changes |
 | Ready-to-flash public firmware | Not provided | Vendor-derived binaries stay outside GitHub |
+| Build third-party RPK with legacy XinAn IDE | Partially reproduced | Tool works, but its original Maven endpoints are offline; use a preserved environment and record hashes |
 
 ## Terminology
 

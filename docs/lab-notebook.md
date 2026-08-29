@@ -139,6 +139,20 @@ Observation: value varied independently of width.
 Conclusion: hypothesis rejected for payload version 2.
 ```
 
+Two negative results from the current work are worth preserving:
+
+```markdown
+### Negative result: OTA completion used as visual proof
+Hypothesis: a successful component-6 OTA proves the edited TSCFrameImage rendered.
+Observation: transfer, apply, and reboot can complete without opening RetailScreenView.
+Conclusion: record package acceptance and visible screen verification separately.
+
+### Negative result: RPK repack assumed to include source changes
+Hypothesis: a newly created RPK necessarily contains the edited HML/JS.
+Observation: the legacy pipeline can reuse an older entry-release-unsigned.bin.
+Conclusion: compare the compiled binary timestamp and SHA-256 before and after every build.
+```
+
 ## Sanitization checklist
 
 Before publishing:

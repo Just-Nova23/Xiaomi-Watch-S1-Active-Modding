@@ -200,6 +200,41 @@ Record:
 
 Do not suppress a compiler error by copying compiled files from another package.
 
+For legacy XinAn projects, verify the compiled payload rather than trusting the
+RPK filename:
+
+```powershell
+Get-FileHash .\entry\build\outputs\bin\release\entry-release-unsigned.bin
+Get-Item .\entry\build\outputs\bin\release\entry-release-unsigned.bin |
+  Select-Object Length, LastWriteTime
+```
+
+After packaging, extract the RPK in a temporary directory and confirm that its
+entry binary has the same SHA-256. This catches a real failure mode where the
+packager succeeds while reusing an older compiled application.
+
+The original XinAn repositories can be offline. Preserve the IDE archive and a
+known working dependency cache. A Huawei plugin with the same numeric version
+is not automatically proof of byte-for-byte or device compatibility.
+
+### Dynamic lists on the legacy runtime
+
+Use only `list-item` as a direct child of `list`. Each dynamic element should
+have a unique stable identifier:
+
+```html
+<list class="item-list">
+  <list-item for="{{items}}" tid="id" onclick="openItem">
+    <text>{{$item.title}}</text>
+  </list-item>
+</list>
+```
+
+Build `items` completely and assign it once when practical. If the console
+prints `List adapter: GetView function parameter index error!`, first verify
+that every row contains the field named by `tid`, that values are unique, and
+that the RPK contains the newly compiled binary. See [Known errors](known-errors.md).
+
 ## Step 8: test installation and lifecycle
 
 Install through the same Mi Fitness workflow already proven to install compatible third-party RPKs. Then test in this order:
